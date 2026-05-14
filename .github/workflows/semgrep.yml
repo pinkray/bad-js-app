@@ -17,14 +17,15 @@ jobs:
   semgrep-scan:
     name: Semgrep Scan
     runs-on: ubuntu-latest
-    container:
-      image: semgrep/semgrep:1.163.0-nonroot
 
     steps:
       - name: Checkout code
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
         with:
-          fetch-depth: 0  # Required for diff-aware scanning
+          fetch-depth: 0  
+
+      - name: Install Semgrep
+        run: pip install semgrep==1.162.0
 
       - name: Run Semgrep scan
         env:
